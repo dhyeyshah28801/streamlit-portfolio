@@ -50,19 +50,26 @@ def home():
     col1, col2 = st.columns([1, 2])
     
     with col1:
-        st.image("profile.jpg", width=250)
+        st.image("profile.jpg", width=250,use_container_width=True)
+        with open("./Dhyey_Shah_AWS_SWE_PLTFRM_ENG_2YR.pdf", "rb") as file:
+                st.download_button(
+                    label="Download Resume",
+                    data=file,
+                    file_name="./Dhyey_Shah_AWS_SWE_PLTFRM_ENG_2YR.pdf",
+                    mime="application/pdf",
+                    use_container_width=True
+                )
     
     with col2:
-        st.markdown("""
+        st.markdown(f"""
             <div style='background-color: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px;'>
                 <h3 style='color: #03DAC6;'>Hi, I'm Dhyey Shah!</h3>
                 <p>A software developer passionate about cloud computing, web development, and scalable infrastructure.</p>
                 <p>Explore my projects, experience, and skills through this interactive portfolio.</p>
-                <a href="resume.pdf" download>
-                    <button style='background-color: #03DAC6; color: #121212; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;'>Download Resume</button>
-                </a>
+                
             </div>
         """, unsafe_allow_html=True)
+
 
 def projects():
     st.title("🚀 Projects")
