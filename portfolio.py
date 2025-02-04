@@ -1,10 +1,25 @@
 import streamlit as st
 from PIL import Image
+from streamlit_option_menu import option_menu
 
 def main():
     st.set_page_config(page_title="Dhyey Shah - Portfolio", layout="wide")
     
-    st.sidebar.title("Navigation")
+    with st.sidebar:
+        selected_page = option_menu(
+            "Navigation", 
+            ["Home", "Projects", "Experience", "Skills", "Contact"],
+            icons=["house", "code", "briefcase", "tools", "envelope"],
+            menu_icon="cast", 
+            default_index=0,
+            styles={
+                "container": {"padding": "5px", "background-color": "black"},
+                "icon": {"color": "#4CAF50", "font-size": "20px"},
+                "nav-link": {"font-size": "16px", "text-align": "left", "margin": "5px"},
+                "nav-link-selected": {"background-color": "#4CAF51", "color": "white"},
+            }
+        )
+    
     pages = {
         "Home": home,
         "Projects": projects,
@@ -13,9 +28,7 @@ def main():
         "Contact": contact
     }
     
-    for page in pages.keys():
-        if st.sidebar.button(page):
-            pages[page]()
+    pages[selected_page]()
 
 def home():
     st.title("👋 Welcome to My Portfolio")
