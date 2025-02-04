@@ -126,22 +126,46 @@ def experience():
 
 def skills():
     st.title("🛠 Skills")
-    skills_list = [
-        "Programming Languages: Python, Java, TypeScript, Node.js",
-        "Frontend Technologies: React, Angular, Vue.js",
-        "Backend & Databases: Express.js, Flask, MySQL, PostgreSQL",
-        "Cloud & DevOps: AWS (Lambda, API Gateway, DynamoDB, S3, CloudFormation)",
-        "Tools & Frameworks: Serverless Framework, Datadog, Jira, Figma"
-    ]
-    
-    st.markdown("""
-        <div style='background-color: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px;'>
-            <ul>
-                {}
-            </ul>
-        </div>
-    """.format("".join(f"<li>{skill}</li>" for skill in skills_list)), unsafe_allow_html=True)
 
+    # Define skills and corresponding proficiency levels
+    skills_data = {
+        "Programming Languages": {"Python": 90, "Java": 80, "TypeScript": 75, "Node.js": 70},
+        "Frontend Technologies": {"React": 85, "Angular": 70, "Vue.js": 65},
+        "Backend & Databases": {"Express.js": 80, "Flask": 75, "MySQL": 85, "PostgreSQL": 80},
+        "Cloud & DevOps": {"AWS": 80, "Serverless Framework": 75, "Datadog": 70},
+        "Tools & Frameworks": {"Jira": 80, "Figma": 70}
+    }
+
+    # Custom CSS for progress bars
+    st.markdown("""
+        <style>
+            .progress-bar {
+                background-color: #f0f2f6;
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+            .progress {
+                background-color: #03DAC6;
+                height: 20px;
+                border-radius: 5px;
+            }
+            .skill-label {
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+        </style>
+    """, unsafe_allow_html=True)
+
+    # Display skills with progress bars
+    for category, skills in skills_data.items():
+        st.subheader(category)
+        for skill, proficiency in skills.items():
+            st.markdown(f"""
+                <div class="skill-label">{skill}</div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: {proficiency}%;"></div>
+                </div>
+            """, unsafe_allow_html=True)
 def education():
     st.title("📚 Education")
     education_list = [
